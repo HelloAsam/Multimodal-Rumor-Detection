@@ -1,7 +1,7 @@
 Weibo-Multimodal-Rumor-Detection
-**************************************************************************
 
->>>>>>>>Data Processing and Preprocessing Pipeline
+Data Processing and Preprocessing Pipeline
+
 This project uses the publicly released Weibo multimodal rumor detection dataset published by Wang et al.
 The original dataset and download links can be found at:
 👉 https://github.com/wangzhuang1911/Weibo-dataset
@@ -89,36 +89,36 @@ Users must download the raw dataset from the official source.
 
 
 
-**************************************************************************
->>>>>>>>Model Descriptions
+
+Model Descriptions
 
 This repository contains nine progressively enhanced multimodal rumor detection models.
 Each model introduces new components or fusion strategies, moving from simple frozen baselines to the final gated and robust fusion architecture.
 
->>>>model1.py — Three-Modality Frozen Baseline
+🔹 model1.py — Three-Modality Frozen Baseline
 Implements a three-modality architecture:
 text semantic (BERT) + image semantic (ViT) + social features.
 All pretrained encoders are fully frozen.
 Fusion uses simple concatenation followed by an MLP classifier.
 Serves as the minimal and most lightweight baseline.
 
->>>>model2.py — Three-Modality with Partial Unfreezing
+🔹 model2.py — Three-Modality with Partial Unfreezing
 Extends model1 by enabling partial unfreezing of the top layers of BERT and ViT.
 Fusion remains concatenation-based.
 Prints parameter statistics for ablation comparisons.
 
->>>>model3.py — Standardized Three-Modality Frozen Implementation
+🔹 model3.py — Standardized Three-Modality Frozen Implementation
 Provides a cleaner, more complete version of the three-modality pipeline.
 Includes improved preprocessing and alignment.
 Encoders remain frozen; fusion still uses projection + concatenation.
 Used as the standard frozen baseline for comparison.
 
->>>>model4.py — Refined Three-Modality with Partial Unfreezing
+🔹 model4.py — Refined Three-Modality with Partial Unfreezing
 Builds upon model3 while incorporating controlled partial unfreezing.
 Retains the three-branch concatenation architecture.
 Evaluates parameter–performance trade-offs.
 
->>>>model5.py — Five-Branch Frozen Multimodal Baseline
+🔹 model5.py — Five-Branch Frozen Multimodal Baseline
 Expands to five branches:
 Text semantic (BERT)
 Text affective cues (RoBERTa)
@@ -129,23 +129,23 @@ All pretrained encoders are frozen.
 Multimodal fusion is direct concatenation of five projected vectors.
 Represents the frozen version of the full five-branch architecture.
 
->>>>model6.py — Five-Branch with Partial Unfreezing
+🔹 model6.py — Five-Branch with Partial Unfreezing
 Extends model5 with partial fine-tuning of BERT, RoBERTa, ViT, and CLIPvision.
 Fusion remains concatenation-based.
 Used to study the effect of limited task-specific adaptation across multiple backbones.
 
->>>>model7.py — Cross-Attention Enhanced Multimodal Model
+🔹 model7.py — Cross-Attention Enhanced Multimodal Model
 Introduces bidirectional cross-modal attention between text and image features.
 Semantic and emotional features are merged within each modality prior to interaction.
 The cross-attended representation is fused with social features.
 Explicitly models text–image alignment beyond simple concatenation.
 
->>>>model8.py — Cross-Attention with Lightweight Gating
+🔹 model8.py — Cross-Attention with Lightweight Gating
 Builds on model7 by adding lightweight gating / weighting mechanisms.
 Represents a hybrid design combining cross-modal attention and initial gating control.
 Used to explore joint effects of interaction and modality weighting.
 
->>>>model9.py — Final Gated and Robust Multimodal Fusion Model
+🔹 model9.py — Final Gated and Robust Multimodal Fusion Model
 This is the final version corresponding to the paper.
 Implements the complete five-branch architecture:
 BERT (semantic), RoBERTa (affective), ViT (semantic), CLIPvision (affective), and social features.
